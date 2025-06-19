@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { PostService } from '../../core/services/post.service';
 import { Post } from '../../models/post';
@@ -21,6 +21,7 @@ export class PostDetailComponent implements OnInit {
   loadingMore = false;
 
   data: Post[] = (jsonData as any).default || [];
+  showBackToTop = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -44,6 +45,19 @@ export class PostDetailComponent implements OnInit {
       this.loadPost(id);
       this.loadRecommendedPosts();
       this.loadNewsPosts();
+    });
+  }
+
+
+  @HostListener('window:scroll', [])
+  onWindowScroll() {
+    this.showBackToTop = window.pageYOffset > 500;
+  }
+
+  scrollToTop() {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
     });
   }
 

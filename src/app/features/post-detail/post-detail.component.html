@@ -19,6 +19,12 @@
       </div>
     </div>
   </div>
+  
+  <button class="back-to-top" *ngIf="showBackToTop" (click)="scrollToTop()">
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+    <path d="M18 15l-6-6-6 6" />
+  </svg>
+</button>
 
   <!-- Loading State -->
   <div *ngIf="isLoading" class="loading-state">
