@@ -4,7 +4,7 @@
       <a routerLink="/">MAANGy</a>
     </div>
     
-    <div class="navbar-links" [class.active]="isMenuOpen">
+    <div class="navbar-links">
       <a routerLink="/" routerLinkActive="active">Home</a>
       <a routerLink="/news" routerLinkActive="active">News</a>
       <div class="dropdown">
@@ -23,7 +23,30 @@
     </div>
     
     <div class="navbar-mobile-toggle" (click)="toggleMenu()">
-      <i class="fas" [class.fa-bars]="!isMenuOpen" [class.fa-times]="isMenuOpen"></i>
+      <div class="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
     </div>
   </div>
+
+  <!-- Mobile Sidebar -->
+  <div class="mobile-sidebar" [class.active]="isMenuOpen">
+    <div class="sidebar-content">
+      <a routerLink="/" routerLinkActive="active" (click)="toggleMenu()">Home</a>
+      <a routerLink="/news" routerLinkActive="active" (click)="toggleMenu()">News</a>
+      <div class="mobile-dropdown" [class.active]="isCompaniesOpen">
+        <button class="mobile-dropbtn" (click)="toggleCompanies()">
+          Companies <i class="fas" [class.fa-chevron-down]="!isCompaniesOpen" [class.fa-chevron-up]="isCompaniesOpen"></i>
+        </button>
+        <div class="mobile-dropdown-content">
+          <a *ngFor="let company of companies" 
+             [routerLink]="['/company', company]" 
+             (click)="toggleMenu()">{{ company }}</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="sidebar-overlay" [class.active]="isMenuOpen" (click)="toggleMenu()"></div>
 </nav>

@@ -6,10 +6,19 @@ import { Component } from '@angular/core';
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent {
-  companies = ['Meta', 'Apple', 'Amazon', 'Netflix', 'Google', 'Microsoft'];
   isMenuOpen = false;
+  isCompaniesOpen = false;
+  
+  companies = ['Meta', 'Apple', 'Amazon', 'Netflix', 'Google', 'Microsoft'];
 
-  toggleMenu() {
+  toggleMenu(): void {
     this.isMenuOpen = !this.isMenuOpen;
+    if (!this.isMenuOpen) {
+      this.isCompaniesOpen = false;
+    }
+  }
+
+  toggleCompanies(): void {
+    this.isCompaniesOpen = !this.isCompaniesOpen;
   }
 }
